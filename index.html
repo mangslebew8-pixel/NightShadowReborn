@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Night Shadow Reborn</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="logo">
+        <span class="moon">☾</span>
+        <h2>NSR</h2>
+        <small>NIGHT SHADOW REBORN</small>
+    </div>
+
+    <div class="menu">
+        <p class="menu-title">MAIN MENU</p>
+        <button class="nav active" data-page="dashboard">⌂ Dashboard</button>
+        <button class="nav" data-page="attendance">◷ Weekly Attendance</button>
+        <button class="nav" data-page="members">♟ Member List</button>
+        <button class="nav" data-page="profiles">♙ Member Profile</button>
+
+        <p class="menu-title">COMMUNITY</p>
+        <button class="nav" data-page="hiatus">☾ Hiatus Forum</button>
+        <button class="nav" data-page="admins">♛ Administration</button>
+        <button class="nav" data-page="events">✦ Upcoming Events</button>
+        <button class="nav" data-page="game">♠ Spill or Drink</button>
+    </div>
+
+    <div class="sidebar-bottom">
+        <span>CREATED BY</span>
+        <h3>VEGRA</h3>
+        <small>© 2026 NIGHT SHADOW</small>
+    </div>
+</div>
+
+<main class="main">
+
+    <header>
+        <div>
+            <p class="eyebrow">WELCOME TO THE SHADOW</p>
+            <h2 id="pageTitle">Dashboard</h2>
+        </div>
+        <div class="header-right">
+            <span class="status">● SYSTEM ONLINE</span>
+            <div class="avatar">V</div>
+        </div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section class="page active" id="dashboard">
+        <div class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">THE DARKNESS HAS A NAME</p>
+                <h1>NIGHT SHADOW<br><span>REBORN</span></h1>
+                <p class="hero-desc">
+                    Beneath the same moon, we gather as shadows.
+                    Different identities, one destination.
+                    We are not born to disappear.
+                    We are reborn to leave a mark.
+                </p>
+                <button class="primary-btn" onclick="showPage('members')">
+                    EXPLORE MEMBERS →
+                </button>
+            </div>
+            <div class="hero-symbol">☾</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <span>TOTAL MEMBERS</span>
+                <h2 id="totalMembers">0</h2>
+                <small>Registered members</small>
+            </div>
+            <div class="stat-card">
+                <span>ADMINISTRATORS</span>
+                <h2 id="totalAdmins">0</h2>
+                <small>Group management</small>
+            </div>
+            <div class="stat-card">
+                <span>ON HIATUS</span>
+                <h2 id="totalHiatus">0</h2>
+                <small>Temporary absence</small>
+            </div>
+            <div class="stat-card">
+                <span>UPCOMING EVENTS</span>
+                <h2 id="totalEvents">0</h2>
+                <small>Future activities</small>
+            </div>
+        </div>
+
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">OUR IDENTITY</p>
+                <h2>About The Group</h2>
+            </div>
+        </div>
+
+        <div class="about-card">
+            <h2>✦ NIGHT SHADOW REBORN ✦</h2>
+            <p>
+                Night Shadow Reborn merupakan sebuah ruang bagi para
+                roleplayer untuk menemukan identitas, membangun koneksi,
+                dan menciptakan cerita bersama.
+            </p>
+            <p>
+                Kami percaya bahwa setiap individu memiliki kisahnya
+                masing-masing. Di balik nama dan karakter yang berbeda,
+                terdapat satu komunitas yang tumbuh melalui kebersamaan,
+                kreativitas, dan rasa saling menghargai.
+            </p>
+            <p>
+                Bukan sekadar tempat berkumpul, melainkan tempat untuk
+                menciptakan kenangan, menikmati setiap momen, dan
+                berkembang bersama.
+            </p>
+            <h3>WE ARE THE SHADOW. WE ARE THE REBIRTH.</h3>
+        </div>
+    </section>
+
+    <!-- ATTENDANCE -->
+    <section class="page" id="attendance">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">MEMBER ACTIVITY</p>
+                <h2>Weekly Attendance</h2>
+            </div>
+            <button class="primary-btn" onclick="markAttendance()">
+                + Absen Hari Ini
+            </button>
+        </div>
+
+        <div class="panel">
+            <h3>Weekly Member Attendance</h3>
+            <p class="muted">Absensi berdasarkan minggu berjalan.</p>
+            <div id="attendanceList"></div>
+        </div>
+    </section>
+
+    <!-- MEMBERS -->
+    <section class="page" id="members">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">OUR COMMUNITY</p>
+                <h2>Member Directory</h2>
+            </div>
+            <button class="primary-btn" onclick="openModal('memberModal')">
+                + Add Member
+            </button>
+        </div>
+
+        <div class="member-grid" id="memberList"></div>
+    </section>
+
+    <!-- PROFILES -->
+    <section class="page" id="profiles">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">GET TO KNOW THEM</p>
+                <h2>Member Profiles</h2>
+            </div>
+        </div>
+        <div class="member-grid" id="profileList"></div>
+    </section>
+
+    <!-- HIATUS -->
+    <section class="page" id="hiatus">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">TEMPORARY ABSENCE</p>
+                <h2>Hiatus Forum</h2>
+            </div>
+            <button class="primary-btn" onclick="openModal('hiatusModal')">
+                + Add Hiatus
+            </button>
+        </div>
+
+        <div class="panel">
+            <div id="hiatusList"></div>
+        </div>
+    </section>
+
+    <!-- ADMIN -->
+    <section class="page" id="admins">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">GROUP MANAGEMENT</p>
+                <h2>Administration</h2>
+            </div>
+            <button class="primary-btn" onclick="openModal('adminModal')">
+                + Add Admin
+            </button>
+        </div>
+
+        <div class="member-grid" id="adminList"></div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="page" id="events">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">SPECIAL MOMENTS</p>
+                <h2>Upcoming Events</h2>
+            </div>
+            <button class="primary-btn" onclick="openModal('eventModal')">
+                + Create Event
+            </button>
+        </div>
+
+        <div class="event-grid" id="eventList"></div>
+    </section>
+
+    <!-- GAME -->
+    <section class="page" id="game">
+        <div class="game-hero">
+            <p class="eyebrow">SPECIAL COMMUNITY GAME</p>
+            <h1>SPILL <span>OR</span> DRINK</h1>
+            <p>
+                Every shadow has a story. Choose your path
+                and discover the character assigned to you.
+            </p>
+        </div>
+
+        <div class="game-panel">
+            <h2>Choose Your Fate</h2>
+            <p class="muted">Pilih salah satu untuk mendapatkan karakter.</p>
+
+            <div class="choice-grid">
+                <button class="choice-btn" onclick="playGame('SPILL')">
+                    ♠ SPILL
+                    <small>Reveal your story</small>
+                </button>
+                <button class="choice-btn" onclick="playGame('DRINK')">
+                    ☾ DRINK
+                    <small>Take the challenge</small>
+                </button>
+            </div>
+
+            <div id="gameResult" class="game-result hidden">
+                <p class="eyebrow">YOUR CHARACTER</p>
+                <h1 id="characterName">UNKNOWN</h1>
+                <div class="character-line"></div>
+                <p id="characterDescription"></p>
+                <h3 id="characterRole"></h3>
+                <button class="primary-btn" onclick="playGameAgain()">
+                    REROLL CHARACTER ↻
+                </button>
+                <button class="secondary-btn" onclick="copyCharacter()">
+                    COPY RESULT
+                </button>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- MEMBER MODAL -->
+<div class="modal" id="memberModal">
+    <div class="modal-box">
+        <span class="close" onclick="closeModal('memberModal')">×</span>
+        <h2>Add New Member</h2>
+        <input id="memberName" placeholder="Nama member">
+        <input id="memberFace" placeholder="Face claim / Idol">
+        <input id="memberUsername" placeholder="Username">
+        <input id="memberRole" placeholder="Role / Posisi">
+        <input id="memberPhoto" placeholder="URL foto (opsional)">
+        <textarea id="memberBio" placeholder="Deskripsi profil"></textarea>
+        <button class="primary-btn" onclick="addMember()">SAVE MEMBER</button>
+    </div>
+</div>
+
+<!-- HIATUS MODAL -->
+<div class="modal" id="hiatusModal">
+    <div class="modal-box">
+        <span class="close" onclick="closeModal('hiatusModal')">×</span>
+        <h2>Add Hiatus</h2>
+        <select id="hiatusMember"></select>
+        <input id="hiatusReason" placeholder="Alasan hiatus">
+        <input id="hiatusDuration" placeholder="Durasi / tanggal kembali">
+        <button class="primary-btn" onclick="addHiatus()">SAVE HIATUS</button>
+    </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="modal" id="adminModal">
+    <div class="modal-box">
+        <span class="close" onclick="closeModal('adminModal')">×</span>
+        <h2>Add Administrator</h2>
+        <input id="adminName" placeholder="Nama admin">
+        <input id="adminPosition" placeholder="Jabatan">
+        <input id="adminContact" placeholder="Username / Contact">
+        <button class="primary-btn" onclick="addAdmin()">SAVE ADMIN</button>
+    </div>
+</div>
+
+<!-- EVENT MODAL -->
+<div class="modal" id="eventModal">
+    <div class="modal-box">
+        <span class="close" onclick="closeModal('eventModal')">×</span>
+        <h2>Create Event</h2>
+        <input id="eventName" placeholder="Nama event">
+        <input id="eventDate" type="date">
+        <input id="eventTime" type="time">
+        <textarea id="eventDescription" placeholder="Deskripsi event"></textarea>
+        <button class="primary-btn" onclick="addEvent()">PUBLISH EVENT</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
